@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1053ECC14CBACD04AEF4066A /* SceneWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078450A74533D2CF51DB2D8A /* SceneWorkspace.swift */; };
+		3D7C0C30B4A425C59585702F /* CompView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A5B00E7CCD2165DDE28370 /* CompView.swift */; };
+		4319BE695FE069E7A770B3A5 /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F5DB7FC576D636E31F89A /* InspectorView.swift */; };
+		5E8D05E501B0AA951AEF673A /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69605DE6021EE51851C978DD /* ProjectStore.swift */; };
+		6678D34E01331A66D8C9F8EB /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7861FACB094449441E2D89E /* SidebarView.swift */; };
+		6C0B39821E9D05E60DEA5243 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD02C0F37535FAE7F549A5 /* ResourcesView.swift */; };
+		972BFC1521B46EA89130E272 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50029BDFAF66E90615601E1E /* Format.swift */; };
+		98F58882A7100F69C4E77389 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F171A6F53E50A46AA3ECDE45 /* FlowLayout.swift */; };
+		98F63FB5F17F8FA8E74BAE4A /* WallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 870F0A2EF4D8EE0900F1E60F /* WallKit */; };
+		ADB8909FF792270E9F6ADD20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF24A5A0247B122E8EA2B05B /* Assets.xcassets */; };
+		B473362C490B96CFFC0BADA6 /* Drawings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76B7C12547AF4A133CFC5A /* Drawings.swift */; };
+		C2F2C1C10E898D979AC3526F /* LEDWallToolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D487308F87E33EC692B183E /* LEDWallToolApp.swift */; };
+		D14AB0A27F25D27E90F3A04B /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9217742BC34AC2FF09D77B0 /* ExportView.swift */; };
+		E6903B55CCEEB620BA5E071C /* Exporters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981DEF544A0BDF853878BF1 /* Exporters.swift */; };
+		F657EAB79EC29334C2832ED7 /* PixelMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C85C597CDF94E6584DE8E /* PixelMapView.swift */; };
+		FD01AE9E1FD0A2AEE8AA5B2B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7426331B3904691765B096 /* MapView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		078450A74533D2CF51DB2D8A /* SceneWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneWorkspace.swift; sourceTree = "<group>"; };
+		1D76B7C12547AF4A133CFC5A /* Drawings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawings.swift; sourceTree = "<group>"; };
+		2D487308F87E33EC692B183E /* LEDWallToolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDWallToolApp.swift; sourceTree = "<group>"; };
+		409F5DB7FC576D636E31F89A /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
+		4585B9900BDA04285AE3F336 /* LEDWallTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LEDWallTool.entitlements; sourceTree = "<group>"; };
+		50029BDFAF66E90615601E1E /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		69605DE6021EE51851C978DD /* ProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStore.swift; sourceTree = "<group>"; };
+		733402FE6E0D6D7BAAA354A9 /* WallKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WallKit; path = Packages/WallKit; sourceTree = SOURCE_ROOT; };
+		73A5B00E7CCD2165DDE28370 /* CompView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompView.swift; sourceTree = "<group>"; };
+		889C85C597CDF94E6584DE8E /* PixelMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelMapView.swift; sourceTree = "<group>"; };
+		9981DEF544A0BDF853878BF1 /* Exporters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporters.swift; sourceTree = "<group>"; };
+		B7861FACB094449441E2D89E /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		B9217742BC34AC2FF09D77B0 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		CBC646CE8F6DC4FD20D87F9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF7426331B3904691765B096 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		DBCD02C0F37535FAE7F549A5 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		E8ADD6EF0570D35A9F58CAAB /* LEDWallTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LEDWallTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF24A5A0247B122E8EA2B05B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F171A6F53E50A46AA3ECDE45 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E30667CF662033BB60B5019B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98F63FB5F17F8FA8E74BAE4A /* WallKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0869EFD55BEDB2ADBF028726 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				73A5B00E7CCD2165DDE28370 /* CompView.swift */,
+				B9217742BC34AC2FF09D77B0 /* ExportView.swift */,
+				F171A6F53E50A46AA3ECDE45 /* FlowLayout.swift */,
+				409F5DB7FC576D636E31F89A /* InspectorView.swift */,
+				CF7426331B3904691765B096 /* MapView.swift */,
+				889C85C597CDF94E6584DE8E /* PixelMapView.swift */,
+				DBCD02C0F37535FAE7F549A5 /* ResourcesView.swift */,
+				078450A74533D2CF51DB2D8A /* SceneWorkspace.swift */,
+				B7861FACB094449441E2D89E /* SidebarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5342FE4F78EC3DB5E2D809E8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1D76B7C12547AF4A133CFC5A /* Drawings.swift */,
+				9981DEF544A0BDF853878BF1 /* Exporters.swift */,
+				50029BDFAF66E90615601E1E /* Format.swift */,
+				2D487308F87E33EC692B183E /* LEDWallToolApp.swift */,
+				69605DE6021EE51851C978DD /* ProjectStore.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		563E31B7A18A3E8DAF3173CE = {
+			isa = PBXGroup;
+			children = (
+				EE111691541BB35726C83CD3 /* LEDWallTool */,
+				604DD47985D8360030EFFAAC /* Packages */,
+				71220ED6D2BF9069D1EC1067 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		604DD47985D8360030EFFAAC /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				733402FE6E0D6D7BAAA354A9 /* WallKit */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		70957125030C592D786CF488 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF24A5A0247B122E8EA2B05B /* Assets.xcassets */,
+				CBC646CE8F6DC4FD20D87F9C /* Info.plist */,
+				4585B9900BDA04285AE3F336 /* LEDWallTool.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		71220ED6D2BF9069D1EC1067 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8ADD6EF0570D35A9F58CAAB /* LEDWallTool.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EE111691541BB35726C83CD3 /* LEDWallTool */ = {
+			isa = PBXGroup;
+			children = (
+				5342FE4F78EC3DB5E2D809E8 /* App */,
+				70957125030C592D786CF488 /* Resources */,
+				0869EFD55BEDB2ADBF028726 /* Views */,
+			);
+			path = LEDWallTool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40ACDD8CE4535FB35C170CCE /* LEDWallTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9273AD3B951F5B62136E695E /* Build configuration list for PBXNativeTarget "LEDWallTool" */;
+			buildPhases = (
+				0AC2AC36E4220B149FCFBEE7 /* Sources */,
+				20A780F163D4D28D073B966F /* Resources */,
+				E30667CF662033BB60B5019B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LEDWallTool;
+			packageProductDependencies = (
+				870F0A2EF4D8EE0900F1E60F /* WallKit */,
+			);
+			productName = LEDWallTool;
+			productReference = E8ADD6EF0570D35A9F58CAAB /* LEDWallTool.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		253C9D558BE4D0023E9B7079 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					40ACDD8CE4535FB35C170CCE = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 711F7A9E07872B333D6D3067 /* Build configuration list for PBXProject "LEDWallTool" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 563E31B7A18A3E8DAF3173CE;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4FF9754E40C9C96E38E94F09 /* XCLocalSwiftPackageReference "Packages/WallKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 71220ED6D2BF9069D1EC1067 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40ACDD8CE4535FB35C170CCE /* LEDWallTool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20A780F163D4D28D073B966F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB8909FF792270E9F6ADD20 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0AC2AC36E4220B149FCFBEE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D7C0C30B4A425C59585702F /* CompView.swift in Sources */,
+				B473362C490B96CFFC0BADA6 /* Drawings.swift in Sources */,
+				D14AB0A27F25D27E90F3A04B /* ExportView.swift in Sources */,
+				E6903B55CCEEB620BA5E071C /* Exporters.swift in Sources */,
+				98F58882A7100F69C4E77389 /* FlowLayout.swift in Sources */,
+				972BFC1521B46EA89130E272 /* Format.swift in Sources */,
+				4319BE695FE069E7A770B3A5 /* InspectorView.swift in Sources */,
+				C2F2C1C10E898D979AC3526F /* LEDWallToolApp.swift in Sources */,
+				FD01AE9E1FD0A2AEE8AA5B2B /* MapView.swift in Sources */,
+				F657EAB79EC29334C2832ED7 /* PixelMapView.swift in Sources */,
+				5E8D05E501B0AA951AEF673A /* ProjectStore.swift in Sources */,
+				6C0B39821E9D05E60DEA5243 /* ResourcesView.swift in Sources */,
+				1053ECC14CBACD04AEF4066A /* SceneWorkspace.swift in Sources */,
+				6678D34E01331A66D8C9F8EB /* SidebarView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		43902FAA33B5B33910E3FB25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LEDWallTool/Resources/LEDWallTool.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = LEDWallTool/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.samanderson.LEDWallTool;
+				PRODUCT_NAME = LEDWallTool;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AFDD4D136E56E3CC4DFF91AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LEDWallTool/Resources/LEDWallTool.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = LEDWallTool/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.samanderson.LEDWallTool;
+				PRODUCT_NAME = LEDWallTool;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BBED8DEF24E0F8229E2FAE85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		EE78808CFC03F2331E469E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		711F7A9E07872B333D6D3067 /* Build configuration list for PBXProject "LEDWallTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE78808CFC03F2331E469E90 /* Debug */,
+				BBED8DEF24E0F8229E2FAE85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9273AD3B951F5B62136E695E /* Build configuration list for PBXNativeTarget "LEDWallTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFDD4D136E56E3CC4DFF91AC /* Debug */,
+				43902FAA33B5B33910E3FB25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4FF9754E40C9C96E38E94F09 /* XCLocalSwiftPackageReference "Packages/WallKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/WallKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		870F0A2EF4D8EE0900F1E60F /* WallKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WallKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 253C9D558BE4D0023E9B7079 /* Project object */;
+}

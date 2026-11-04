@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>LED Wall Tool</title>
+<link rel="stylesheet" href="css/app.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="tb-left">
+      <input id="projName" class="projname" title="Project name" spellcheck="false">
+      <button id="settingsChip" class="chip" title="Frame rate, bit depth and power settings"></button>
+    </div>
+    <nav id="tabs" class="seg seg-lg" aria-label="View">
+      <button data-tab="map2d" class="on">2D Map</button>
+      <button data-tab="view3d">3D</button>
+      <button data-tab="pixmap">Pixel Map</button>
+      <button data-tab="resources">Resources<span id="issueBadge"></span></button>
+    </nav>
+    <div class="tb-right">
+      <div class="tb-group">
+        <button class="tbi" data-act="new" title="New project" data-icon="new"></button>
+        <button class="tbi" data-act="open" title="Open project (⌘O)" data-icon="open"></button>
+        <button class="tbi" data-act="save" title="Save project (⌘S)" data-icon="save"></button>
+      </div>
+      <div class="tb-group">
+        <button class="tbi" data-act="undo" title="Undo (⌘Z)" data-icon="undo"></button>
+        <button class="tbi" data-act="redo" title="Redo (⇧⌘Z)" data-icon="redo"></button>
+      </div>
+      <div class="tb-group">
+        <button class="tbi" data-act="print" title="Print drawings (⌘P)" data-icon="print"></button>
+        <div class="menu">
+          <button class="tbi" title="Export" data-icon="export" aria-haspopup="menu"></button>
+          <div class="menu-items" role="menu">
+            <button data-act="exp-sheet-data">Data Sheet (SVG) — Current Wall</button>
+            <button data-act="exp-sheet-power">Power Sheet (SVG) — Current Wall</button>
+            <button data-act="exp-sheet-png">Current Sheet (PNG)</button>
+            <hr>
+            <button data-act="exp-drawings-html">All Drawings (HTML)</button>
+            <button data-act="exp-pixelmap">Pixel Map (PNG, Native Resolution)</button>
+            <button data-act="exp-csv">Resource Report (CSV)</button>
+            <button data-act="exp-3d">3D View (PNG)</button>
+            <hr>
+            <button data-act="exp-lib">Export Panel Library…</button>
+            <button data-act="imp-lib">Import Panel Library…</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <aside id="sidebar"></aside>
+  <main id="main">
+    <section id="tab-map2d" class="tab on">
+      <div id="tb2d" class="toolbar"></div>
+      <div id="stage2d" class="stage"></div>
+      <div id="runsPanel"></div>
+    </section>
+    <section id="tab-view3d" class="tab">
+      <div id="tb3d" class="toolbar"></div>
+      <div id="stage3d" class="stage"></div>
+    </section>
+    <section id="tab-pixmap" class="tab">
+      <div id="tbpx" class="toolbar"></div>
+      <div id="stagepx" class="stage scroll"></div>
+    </section>
+    <section id="tab-resources" class="tab">
+      <div id="resources" class="doc scroll"></div>
+    </section>
+  </main>
+  <aside id="inspector"></aside>
+  <footer id="status"></footer>
+</div>
+<div id="popover" hidden></div>
+<div id="toast" hidden></div>
+<div id="print-host"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

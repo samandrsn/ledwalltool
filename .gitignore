@@ -1,0 +1,13 @@
+# Build output
+build/
+DerivedData/
+.build/
+Packages/WallKit/.build/
+Packages/WallKit/.swiftpm/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Local tooling
+.DS_Store
+.claude/
+.impeccable/
