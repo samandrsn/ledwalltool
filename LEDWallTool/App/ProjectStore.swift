@@ -236,22 +236,38 @@ final class ProjectStore: ObservableObject {
         project.panelTypes.removeAll { $0.id == id }
     }
 
-    /// Places each section of a wall below whatever is already on its processor's canvas.
+    /// Puts each section of a wall in the first free spot on its processor's canvas (top-left first),
+    /// falling back to below everything when nothing fits.
     /// `only` limits it to those zones (the wall's own id = its main feed), leaving the rest where they are.
     func placeCanvas(_ w: inout Wall, only: Set<UUID>? = nil) {
         guard let pt = project.panelType(w.panelTypeID) else { return }
-        for f in w.feeds where !f.isEmpty {
-            guard let pid = f.processorID else { continue }
-            if let only, !only.contains(f.zoneID ?? w.id) { continue }
-            var y = 0
-            for o in project.walls where o.id != w.id {
-                guard let opt = project.panelType(o.panelTypeID) else { continue }
-                for of in o.feeds where of.processorID == pid && !of.isEmpty { y = max(y, of.canvasY + of.rows.count * opt.spec.pxH) }
+        typealias R = (x: Int, y: Int, w: Int, h: Int)
+        var placed: [UUID: [R]] = [:]          // processor → rects already on its canvas
+        for o in project.walls where o.id != w.id {
+            guard let opt = project.panelType(o.panelTypeID) else { continue }
+            for of in o.feeds where !of.isEmpty {
+                guard let pid = of.processorID else { continue }
+                placed[pid, default: []].append((of.canvasX, of.canvasY, of.cols.count * opt.spec.pxW, of.rows.count * opt.spec.pxH))
             }
-            for of in w.feeds where of.index != f.index && of.processorID == pid && !of.isEmpty && (only == nil ? of.index < f.index : !only!.contains(of.zoneID ?? w.id)) {
-                y = max(y, of.canvasY + of.rows.count * pt.spec.pxH)
+        }
+        let feeds = w.feeds
+        let moving = Set(feeds.filter { only == nil || only!.contains($0.zoneID ?? w.id) }.map(\.index))
+        for f in feeds where !f.isEmpty && !moving.contains(f.index) {
+            if let pid = f.processorID { placed[pid, default: []].append((f.canvasX, f.canvasY, f.cols.count * pt.spec.pxW, f.rows.count * pt.spec.pxH)) }
+        }
+        for f in feeds where !f.isEmpty && moving.contains(f.index) {
+            guard let pid = f.processorID, let proc = project.processors.first(where: { $0.id == pid }) else { continue }
+            let W = f.cols.count * pt.spec.pxW, H = f.rows.count * pt.spec.pxH
+            let rects = placed[pid] ?? []
+            func free(_ x: Int, _ y: Int) -> Bool {
+                x + W <= proc.inputW && y + H <= proc.inputH &&
+                    !rects.contains { x < $0.x + $0.w && $0.x < x + W && y < $0.y + $0.h && $0.y < y + H }
             }
-            w.setCanvas(feed: f.index, x: 0, y: y)
+            let xs = Set([0] + rects.map { $0.x + $0.w } + rects.map(\.x)), ys = Set([0] + rects.map { $0.y + $0.h } + rects.map(\.y))
+            let spot = ys.sorted().lazy.flatMap { y in xs.sorted().lazy.map { (x: $0, y: y) } }.first { free($0.x, $0.y) }
+                ?? (0, rects.map { $0.y + $0.h }.max() ?? 0)
+            w.setCanvas(feed: f.index, x: spot.x, y: spot.y)
+            placed[pid, default: []].append((spot.x, spot.y, W, H))
         }
     }
 
