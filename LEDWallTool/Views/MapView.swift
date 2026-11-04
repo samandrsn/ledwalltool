@@ -166,12 +166,12 @@ struct MapView: View {
         let runs = wall[kind].runs
         let hasRun = runs.indices.contains(selectedRun)
         Button { store.updateWall(wall.id) { $0[kind].runs.append(Run()) }; selectedRun = runs.count } label: { Label("New Run", systemImage: "plus") }
-        Button("Reverse") { store.updateWall(wall.id) { $0[kind].runs[selectedRun].cells.reverse() } }.disabled(!hasRun)
-        Button("Clear") { store.updateWall(wall.id) { $0[kind].runs[selectedRun].cells = [] } }.disabled(!hasRun)
-        Button("Delete Run") { store.updateWall(wall.id) { $0[kind].runs.remove(at: selectedRun) }; selectedRun = max(0, selectedRun - 1) }.disabled(!hasRun)
+        Button("Reverse") { editRun(wall.id, kind) { $0.cells.reverse() } }.disabled(!hasRun)
+        Button("Clear") { editRun(wall.id, kind) { $0.cells = [] } }.disabled(!hasRun)
+        Button("Delete Run") { deleteSelectedRun(wall.id, kind) }.disabled(!hasRun)
         let runProc = runs[safe: selectedRun]?.cells.first.flatMap { wall.feeds[safe: wall.feedIndex($0)]?.processorID } ?? wall.processorID
         if kind == .data, hasRun, let proc = store.project.processors.first(where: { $0.id == runProc }), let pr = store.report.processors[proc.id] {
-            Picker("Port", selection: Binding(get: { runs[selectedRun].port }, set: { v in store.updateWall(wall.id) { $0.data.runs[selectedRun].port = v } })) {
+            Picker("Port", selection: Binding(get: { runs[safe: selectedRun]?.port }, set: { v in editRun(wall.id, .data) { $0.port = v } })) {
                 Text("Auto").tag(Int?.none)
                 ForEach(0..<max(pr.hardMax, 1), id: \.self) { Text(proc.portLabel($0)).tag(Optional($0)) }
             }
@@ -179,6 +179,21 @@ struct MapView: View {
         }
         Text("Drag across panels to add them to the selected run (max \(kind == .data ? wr.dataCap : wr.powerCap)). ⌥-drag removes.")
             .foregroundStyle(.secondary).font(.callout)
+    }
+
+    /// Edits one hand-wired run, reading the wall fresh so a stale selection can never index past the end.
+    private func editRun(_ wallID: UUID, _ kind: WiringKind, _ index: Int? = nil, _ f: @escaping (inout Run) -> Void) {
+        let i = index ?? selectedRun
+        store.updateWall(wallID) { w in if w[kind].runs.indices.contains(i) { f(&w[kind].runs[i]) } }
+    }
+
+    private func deleteSelectedRun(_ wallID: UUID, _ kind: WiringKind) {
+        var remaining = 0
+        store.updateWall(wallID) { w in
+            if w[kind].runs.indices.contains(selectedRun) { w[kind].runs.remove(at: selectedRun) }
+            remaining = w[kind].runs.count
+        }
+        selectedRun = min(selectedRun, max(0, remaining - 1))
     }
 
     private func runsBar(_ wall: Wall, _ wr: WallReport, _ kind: WiringKind) -> some View {
@@ -211,9 +226,9 @@ struct MapView: View {
                             }
                             if wall.data.custom, let proc = store.project.processors.first(where: { $0.id == run.processorID }), let pr = store.report.processors[proc.id] {
                                 Menu("Port") {
-                                    Button("Auto") { store.updateWall(wall.id) { $0.data.runs[i].port = nil } }
+                                    Button("Auto") { editRun(wall.id, .data, i) { $0.port = nil } }
                                     ForEach(0..<max(pr.hardMax, 1), id: \.self) { port in
-                                        Button(proc.portLabel(port)) { store.updateWall(wall.id) { $0.data.runs[i].port = port } }
+                                        Button(proc.portLabel(port)) { editRun(wall.id, .data, i) { $0.port = port } }
                                     }
                                 }
                             }
