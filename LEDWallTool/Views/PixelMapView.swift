@@ -6,6 +6,8 @@ struct PixelMapView: View {
     @Binding var selection: Selection?
     @State private var procID: UUID?
     @State private var snap = true
+    /// 1 = fit the whole input canvas in the window.
+    @State private var zoom: CGFloat = 1
     @State private var drag: (id: UUID, feed: Int, dx: CGFloat, dy: CGFloat)?
 
     private var proc: Processor? {
@@ -20,6 +22,12 @@ struct PixelMapView: View {
                         ForEach(store.project.processors) { Text(verbatim: "\($0.name) — \($0.inputW)×\($0.inputH)").tag($0.id) }
                     }
                     .labelsHidden().fixedSize()
+                    ControlGroup {
+                        Button { zoom = max(0.25, zoom / 1.25) } label: { Image(systemName: "minus.magnifyingglass") }.help("Zoom out")
+                        Button { zoom = 1 } label: { Image(systemName: "arrow.up.left.and.down.right.magnifyingglass") }.help("Fit canvas to window")
+                        Button { zoom = min(8, zoom * 1.25) } label: { Image(systemName: "plus.magnifyingglass") }.help("Zoom in")
+                    }
+                    .fixedSize()
                     Toggle("Snap to panel grid", isOn: $snap).fixedSize()
                     Button("Auto-Pack") { store.autoPack(proc.id) }
                     Button { Exporters.exportPixelMap(store, proc.id) } label: { Label("Export PNG…", systemImage: "square.and.arrow.up") }
@@ -28,7 +36,7 @@ struct PixelMapView: View {
                 GeometryReader { geo in
                     ScrollView([.vertical, .horizontal]) {
                         VStack(alignment: .leading, spacing: 18) {
-                            canvas(proc, width: geo.size.width - 48)
+                            canvas(proc, width: geo.size.width - 48, height: geo.size.height - 80)
                             if let sid = proc.sourceID, let sr = store.report.servers[sid] { mosaic(sr, width: geo.size.width - 48) }
                         }
                         .padding(24)
@@ -36,14 +44,16 @@ struct PixelMapView: View {
                     }
                 }
                 .background(Color(white: 0.075))
+                .gesture(MagnifyGesture().onChanged { zoom = min(8, max(0.25, zoom * $0.magnification)) })
             } else {
                 ContentUnavailableView("No Processors", systemImage: "cpu", description: Text("Add a processor to map walls onto its input."))
             }
         }
     }
 
-    private func canvas(_ proc: Processor, width: CGFloat) -> some View {
-        let scale = min(1, max(0.05, width / CGFloat(proc.inputW)))
+    private func canvas(_ proc: Processor, width: CGFloat, height: CGFloat) -> some View {
+        let fit = min(width / CGFloat(proc.inputW), max(120, height) / CGFloat(proc.inputH))
+        let scale = max(0.02, fit * zoom)
         let slots = store.report.processors[proc.id]?.slots ?? []
         return VStack(alignment: .leading, spacing: 6) {
             Text(verbatim: "\(proc.name) input canvas \(proc.inputW)×\(proc.inputH)").font(.callout).foregroundStyle(.secondary)

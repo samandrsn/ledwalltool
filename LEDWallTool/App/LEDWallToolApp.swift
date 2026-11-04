@@ -134,6 +134,34 @@ struct ContentView: View {
     }
 }
 
+struct IssueList: View {
+    let issues: [Issue]
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(issues.isEmpty ? "No issues" : "\(issues.count) issue\(issues.count == 1 ? "" : "s")").font(.headline).padding(12)
+            Divider()
+            if issues.isEmpty {
+                Label("Everything checks out.", systemImage: "checkmark.circle.fill").foregroundStyle(.green).padding(12)
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(issues) { i in
+                            Label { Text(i.message).fixedSize(horizontal: false, vertical: true) } icon: {
+                                Image(systemName: i.level.symbol).foregroundStyle(i.level.color)
+                            }
+                            .textSelection(.enabled)
+                        }
+                    }
+                    .padding(12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxHeight: 360)
+            }
+        }
+        .frame(width: 440)
+    }
+}
+
 struct StatusBar: View {
     @EnvironmentObject private var store: ProjectStore
 
@@ -181,18 +209,30 @@ struct StatusBar: View {
         .overlay(alignment: .top) { Divider() }
     }
 
-    @ViewBuilder private var checks: some View {
-        HStack(spacing: 10) {
-            if store.report.errorCount > 0 {
-                Label("\(store.report.errorCount) errors", systemImage: "xmark.octagon.fill").foregroundStyle(.red)
-            } else {
-                Label("No errors", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+    @State private var showIssues = false
+
+    /// Error/warning counts. Hover for a tooltip listing them; click for the full list.
+    private var checks: some View {
+        let rep = store.report
+        let shown = rep.issues.filter { $0.level > .info }
+        return Button { showIssues.toggle() } label: {
+            HStack(spacing: 10) {
+                if rep.errorCount > 0 {
+                    Label("\(rep.errorCount) error\(rep.errorCount == 1 ? "" : "s")", systemImage: "xmark.octagon.fill").foregroundStyle(.red)
+                } else {
+                    Label("No errors", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                }
+                if rep.warningCount > 0 {
+                    Label("\(rep.warningCount)", systemImage: "exclamationmark.triangle.fill").foregroundStyle(.orange)
+                }
             }
-            if store.report.warningCount > 0 {
-                Label("\(store.report.warningCount)", systemImage: "exclamationmark.triangle.fill").foregroundStyle(.orange)
-            }
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
         .fixedSize()
+        .help(shown.isEmpty ? "No errors or warnings" : shown.prefix(12).map { "\($0.level == .error ? "✕" : "⚠︎") \($0.message)" }.joined(separator: "\n")
+              + (shown.count > 12 ? "\n…and \(shown.count - 12) more (click to see all)" : ""))
+        .popover(isPresented: $showIssues, arrowEdge: .top) { IssueList(issues: rep.issues) }
     }
 
     private func stat(_ k: String, _ v: String) -> some View {
