@@ -95,6 +95,9 @@ struct MapView: View {
                 ContentUnavailableView("No Walls", systemImage: "square.grid.3x3", description: Text("Add a wall from the sidebar or the + button in the toolbar."))
             }
         }
+        .onAppear {
+            if let l = UserDefaults.standard.string(forKey: "layer").flatMap(MapLayer.init(rawValue:)) { layer = l }
+        }
     }
 
     // MARK: Toolbar

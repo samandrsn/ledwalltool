@@ -173,4 +173,11 @@ final class WallKitTests: XCTestCase {
         w.assign(Set((0..<16).map { Cell($0, 0) }), to: w.processorID)
         XCTAssertEqual(w.feeds.map(\.cells.count), [64, 48, 16])
     }
+
+    func testDemoProjectHasNoErrors() {
+        let p = LEDProject.demo()
+        let rep = Analysis.analyze(p)
+        XCTAssertEqual(rep.errorCount, 0, "\(rep.issues.map(\.message))")
+        XCTAssertEqual(rep.walls[p.walls[1].id]!.feeds.count, 3)
+    }
 }

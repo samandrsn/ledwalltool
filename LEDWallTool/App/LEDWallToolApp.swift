@@ -21,6 +21,7 @@ struct LEDWallToolApp: App {
             CommandGroup(replacing: .newItem) {
                 Button("New Project") { store.newProject() }.keyboardShortcut("n")
                 Button("Open…") { store.open() }.keyboardShortcut("o")
+                Button("Open Demo Project") { store.openDemo() }
             }
             CommandGroup(replacing: .saveItem) {
                 Button("Save") { store.save() }.keyboardShortcut("s")
@@ -246,6 +247,10 @@ extension ContentView {
         let d = UserDefaults.standard
         if let ws = d.string(forKey: "workspace").flatMap(Workspace.init(rawValue:)) { workspace = ws }
         if d.bool(forKey: "showExport") { store.showExport = true }
+        if let name = d.string(forKey: "wall"), let w = store.project.walls.first(where: { $0.name == name }) { store.focusWallID = w.id; selection = .wall(w.id) }
+        if let name = d.string(forKey: "processor"), let pr = store.project.processors.first(where: { $0.name == name }) { selection = .processor(pr.id) }
+        // Don't start with the cursor sitting in the first text field.
+        DispatchQueue.main.async { NSApp.keyWindow?.makeFirstResponder(nil) }
         if let s = d.string(forKey: "windowSize")?.split(separator: "x").compactMap({ Double($0) }), s.count == 2 {
             DispatchQueue.main.async { NSApp.windows.first { $0.isVisible && $0.frame.width > 400 }?.setContentSize(NSSize(width: s[0], height: s[1])) }
         }

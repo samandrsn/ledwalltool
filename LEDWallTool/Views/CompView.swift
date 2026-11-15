@@ -100,7 +100,7 @@ struct CompView: View {
                     ctx.withCGContext { cg in
                         cg.setFillColor(NSColor(white: 0.2, alpha: 1).cgColor)
                         cg.fill(CGRect(x: 0, y: 0, width: extW, height: extH))
-                        CompRenderer.draw(cg, project, report, mode: .template, labels: showLabels, moving: moving)
+                        CompRenderer.draw(cg, project, report, mode: .template, labels: labels, panelIDs: showLabels, moving: moving, minTitle: 13 / scale)
                         cg.setStrokeColor(NSColor.controlAccentColor.cgColor)
                         cg.setLineWidth(2 / scale)
                         cg.stroke(CGRect(x: 0, y: 0, width: comp.width, height: comp.height))
@@ -227,7 +227,9 @@ enum CompRenderer {
     enum Mode { case mask, template }
 
     /// Draws the comp at native pixels into a y-down context.
-    static func draw(_ cg: CGContext, _ p: LEDProject, _ rep: Report, mode: Mode, labels: Bool, moving: (UUID, CGFloat, CGFloat)? = nil) {
+    /// `minTitle` keeps wall names readable when the comp is drawn scaled down.
+    static func draw(_ cg: CGContext, _ p: LEDProject, _ rep: Report, mode: Mode, labels: Bool, panelIDs: Bool = true,
+                     moving: (UUID, CGFloat, CGFloat)? = nil, minTitle: CGFloat = 14) {
         let comp = p.comp
         cg.setFillColor(mode == .mask ? NSColor.black.cgColor : NSColor(white: 0.06, alpha: 1).cgColor)
         cg.fill(CGRect(x: 0, y: 0, width: comp.width, height: comp.height))
@@ -251,13 +253,13 @@ enum CompRenderer {
                     cg.setStrokeColor(NSColor.white.withAlphaComponent(0.85).cgColor)
                     cg.setLineWidth(line)
                     cg.stroke(rect.insetBy(dx: line / 2, dy: line / 2))
-                    if labels && pw >= 48 {
+                    if labels && panelIDs && pw >= 48 {
                         text("\(c + 1).\(row + 1)", at: CGPoint(x: rect.minX + line * 4, y: rect.minY + line * 3), size: max(9, ph / 8))
                     }
                 }
             }
             if mode == .template && labels {
-                let size = max(14, min(96, CGFloat(r.h) / 7))
+                let size = min(max(minTitle, min(96, CGFloat(r.h) / 7)), CGFloat(r.h) / 3)
                 text(w.name, at: CGPoint(x: ox + CGFloat(r.w) / 2, y: oy + CGFloat(r.h) / 2 - size * 0.6), size: size, bold: true, centered: true)
                 text("\(r.w)×\(r.h) @ \(r.x),\(r.y)", at: CGPoint(x: ox + CGFloat(r.w) / 2, y: oy + CGFloat(r.h) / 2 + size * 0.55), size: size * 0.5, centered: true)
             }

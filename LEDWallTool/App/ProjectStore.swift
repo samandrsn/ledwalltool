@@ -40,8 +40,11 @@ final class ProjectStore: ObservableObject {
     private var gestureSnapshot: LEDProject?
     private var autosaveTask: Task<Void, Never>?
 
+    /// Set by the `-demo YES` launch flag: show the demo set and leave the autosave alone.
+    private let autosaveDisabled = UserDefaults.standard.bool(forKey: "demo")
+
     init() {
-        let p = Self.loadAutosave() ?? .starter()
+        let p = autosaveDisabled ? .demo() : Self.loadAutosave() ?? .starter()
         project = p
         report = Analysis.analyze(p)
         focusWallID = p.walls.first?.id
@@ -73,6 +76,7 @@ final class ProjectStore: ObservableObject {
         return try? JSONDecoder().decode(LEDProject.self, from: d)
     }
     private func scheduleAutosave() {
+        guard !autosaveDisabled else { return }
         autosaveTask?.cancel()
         autosaveTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1))
@@ -88,6 +92,12 @@ final class ProjectStore: ObservableObject {
     func newProject() {
         guard confirmDiscard() else { return }
         replace(.starter(), url: nil)
+    }
+
+    /// A sample arena set to explore the app with.
+    func openDemo() {
+        guard confirmDiscard() else { return }
+        replace(.demo(), url: nil)
     }
 
     func open() {

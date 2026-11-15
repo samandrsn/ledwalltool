@@ -715,7 +715,8 @@ enum Drawings {
         s.text("SYSTEM SUMMARY", CGPoint(x: rx, y: a.minY + 92 * k), 10 * k, bold: true)
         let y2 = s.table(CGPoint(x: rx, y: a.minY + 100 * k), width: rw, columns: [("ITEM", 1.3, .left), ("VALUE", 2, .left)], rows: [
             ["Walls", "\(p.walls.count)"], ["Panels", "\(t.panels)"], ["Pixels", F.mp(t.pixels)],
-            ["Processors", p.processors.map { "\($0.name) (\($0.spec.name))" }.joined(separator: ", ").ifEmpty("—")],
+            ["Processors", Dictionary(grouping: p.processors, by: \.spec.name).sorted { $0.key < $1.key }
+                .map { "\($0.value.count) × \($0.key)" }.joined(separator: ", ").ifEmpty("—")],
             ["Data runs", "\(t.dataRuns)"], ["Circuits", "\(t.circuits) × \(Int(p.settings.breakerAmps)) A \(p.settings.voltage.label)"],
             ["Weight", F.weight(t.kg)], ["Power", "max \(F.kw(t.wMax)) · typical \(F.kw(t.wAvg))"],
             ["Signal", "\(fmt(p.settings.frameRate)) Hz · \(p.settings.bitDepth)-bit"],

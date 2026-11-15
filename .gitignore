@@ -9,5 +9,4 @@ Packages/WallKit/.swiftpm/
 
 # Local tooling
 .DS_Store
-.claude/
 .impeccable/
